@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grad1">#0D100C</color>
+    <color name="grad2">#001B51</color>
+    <color name="gradbtn1">#063183</color>
+    <color name="gradbtn2">#1C1F1B</color>
+    <color name="grey">#8E8A8A</color>
+    <color name="color1">#2F6AE9</color>
+
+</resources>

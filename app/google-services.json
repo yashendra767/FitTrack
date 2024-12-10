@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "946909047069",
+    "firebase_url": "https://fittrackwoc-default-rtdb.firebaseio.com",
+    "project_id": "fittrackwoc",
+    "storage_bucket": "fittrackwoc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946909047069:android:89c23d70467768d56b59f4",
+        "android_client_info": {
+          "package_name": "com.example.fittrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946909047069-uli03fm01nbo7gk10o61ijmpjf0gmr7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRLSgbsW_go39vTtbrM7bvRTe-T_RKiTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946909047069-uli03fm01nbo7gk10o61ijmpjf0gmr7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

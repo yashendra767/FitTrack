@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Your Workout"
+        android:textSize="40dp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/color1"
+        android:layout_gravity="center">
+
+    </TextView>
+    <EditText
+        android:id="@+id/editTextExerciseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:height="60dp"
+        android:drawableStart="@drawable/exercise_routine"
+        android:hint=" Exercise Name" />
+
+    <EditText
+        android:id="@+id/editTextDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:height="60dp"
+        android:drawableStart="@drawable/time"
+        android:hint=" Duration (minutes)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextCaloriesBurned"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:height="60dp"
+        android:hint=" Calories Burned"
+        android:drawableStart="@drawable/calories"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        android:paddingTop="16dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:padding="7dp"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            android:background="#4491D3">
+        </TextView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnSave"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginTop="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:padding="7dp"
+            android:textColor="@color/white"
+            android:textSize="32dp"
+            android:background="@color/color1">
+        </TextView>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
