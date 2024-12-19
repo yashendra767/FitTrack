@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_gravity="bottom"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         app:cardElevation="10dp"
         android:translationZ="10dp"
         app:cardCornerRadius="40dp" >

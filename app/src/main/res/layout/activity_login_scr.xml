@@ -22,9 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_gravity="bottom"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         app:cardElevation="10dp"
-        android:translationZ="10dp"
         app:cardCornerRadius="40dp" >
 
         <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +34,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userEmailEditText"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=" Email"
                 android:height="60dp"
@@ -44,7 +43,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:layout_marginStart="20dp"
@@ -75,7 +74,7 @@
             android:backgroundTint="@color/gradbtn1"/>
 
         <TextView
-            android:id="@+id/tV6"
+            android:id="@+id/tVSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

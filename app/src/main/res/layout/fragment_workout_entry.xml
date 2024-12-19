@@ -11,40 +11,57 @@
         android:layout_height="wrap_content"
         android:text="Log Your Workout"
         android:textSize="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:textStyle="bold"
         android:textColor="@color/color1"
         android:layout_gravity="center">
 
     </TextView>
-    <EditText
-        android:id="@+id/editTextExerciseName"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:height="60dp"
-        android:drawableStart="@drawable/exercise_routine"
-        android:hint=" Exercise Name" />
+        android:layout_marginTop="50dp"
+        app:boxStrokeColor="@color/color1">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextExerciseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:drawableStart="@drawable/exercise_routine"
+            android:hint=" Exercise Name" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editTextDuration"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:height="60dp"
-        android:drawableStart="@drawable/time"
-        android:hint=" Duration (minutes)"
-        android:inputType="number" />
+        app:boxStrokeColor="@color/color1">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:drawableStart="@drawable/time"
+            android:hint=" Duration (minutes)"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editTextCaloriesBurned"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:height="60dp"
-        android:hint=" Calories Burned"
-        android:drawableStart="@drawable/calories"
-        android:inputType="number" />
+        app:boxStrokeColor="@color/color1">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCaloriesBurned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:hint=" Calories Burned"
+            android:drawableStart="@drawable/calories"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textViewDate"
@@ -82,14 +99,14 @@
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
         app:cardCornerRadius="15dp"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="58dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
             android:padding="7dp"
             android:textColor="@color/white"
-            android:textSize="32dp"
+            android:textSize="28dp"
             android:background="@color/color1">
         </TextView>
     </androidx.cardview.widget.CardView>

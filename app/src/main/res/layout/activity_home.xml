@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".HomeActivity">
 
     <TextView
@@ -12,6 +14,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:textSize="35dp"
-        android:layout_margin="10dp" />
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/adlam_display"
+        android:layout_margin="5dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/frameLayout">
+    </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNavView"
+        app:menu="@menu/items"
+        app:itemIconSize="30dp" />
 </LinearLayout>
