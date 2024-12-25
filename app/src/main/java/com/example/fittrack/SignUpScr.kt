@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
@@ -32,7 +33,7 @@ class SignUpScr : AppCompatActivity() {
         val nameUser = findViewById<TextInputEditText>(R.id.name)
         val emailUser = findViewById<TextInputEditText>(R.id.email)
         val passUser = findViewById<TextInputEditText>(R.id.pass)
-        val signButton = findViewById<Button>(R.id.btnCreate)
+        val signButton = findViewById<CardView>(R.id.btnCreate)
         signButton.setOnClickListener {
             val name = nameUser.text.toString()
             val email = emailUser.text.toString()

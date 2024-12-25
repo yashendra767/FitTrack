@@ -9,6 +9,7 @@ data class DatabaseTable(
     var duration: Int,
     var calorie: Int,
     val date: String,
+    var uid: String,
     var firebaseId: String? = null,
 
     @PrimaryKey(autoGenerate = true)

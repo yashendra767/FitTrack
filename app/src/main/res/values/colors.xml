@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000 </color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grad1">#0D100C</color>
@@ -8,5 +9,16 @@
     <color name="gradbtn2">#1C1F1B</color>
     <color name="grey">#8E8A8A</color>
     <color name="color1">#2F6AE9</color>
+    <color name="btn1">#D7FF00</color>
+    <color name="btn2">#A3C100</color>
+    <color name="input1">#1E1B2A</color>
+    <color name="input2">#15131F</color>
+    <color name="materialBlue">#3E50B4</color>
+    <color name="materialCyan">#03DAC6</color>
+    <color name="materialTeal">#018786</color>
+    <color name="materialGrey5">#1e1e1e</color>
+    <color name="materialGrey7">#222222</color>
+    <color name="materialGrey">#121212</color>
+    <color name="selectedItem">#fff59d</color>
 
 </resources>

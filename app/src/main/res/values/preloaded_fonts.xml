@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/adlam_display</item>
+        <item>@font/amaranth</item>
+        <item>@font/baloo_bhai</item>
         <item>@font/roboto</item>
         <item>@font/roboto_slab</item>
     </array>

@@ -8,13 +8,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:background="@drawable/eachrow_bg">
 
             <TextView
                 android:id="@+id/tVName"
@@ -22,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="7dp"
+                android:textColor="#A8A9AB"
                 android:text="Exercise Name"
                 android:textSize="28dp"
                 android:textStyle="bold"
@@ -34,6 +36,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="5dp"
+                android:background="@color/transparent"
                 android:elevation="5dp"
                 android:contentDescription="Delete"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +51,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="7dp"
                 android:text="Duration"
+                android:textColor="#A8A9AB"
                 android:textSize="17dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +66,7 @@
                 android:layout_marginBottom="7dp"
                 android:text="Calories"
                 android:textSize="17dp"
+                android:textColor="#A8A9AB"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tVDuration"
                 app:layout_constraintTop_toBottomOf="@+id/tVName" />
@@ -94,12 +99,11 @@
                 android:id="@+id/tVDate"
                 android:layout_width="wrap_content"
                 android:textSize="15dp"
+                android:textColor="#A8A9AB"
                 android:layout_height="wrap_content"
                 android:text="Date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

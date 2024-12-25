@@ -5,29 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecyclerWorkout"
-    android:padding="15dp">
+    android:padding="12dp"
+    android:background="@color/materialGrey">
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_slab"
+        android:fontFamily="@font/baloo_bhai"
         android:gravity="center"
         android:text="Logged Workouts"
-        android:textColor="@color/color1"
-        android:textSize="35dp"
-        android:textStyle="bold"
+        android:textColor="#cddc39"
+        android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:theme="@style/SearchViewTheme"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:background="@drawable/search_bar_bg"
+        android:queryHint="Search Workouts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+    </SearchView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

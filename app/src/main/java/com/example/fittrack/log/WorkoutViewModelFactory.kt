@@ -10,7 +10,6 @@ class WorkoutViewModelFactory(
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(WorkoutViewModel::class.java)) {
-            // Return the WorkoutViewModel instance with application and uid
             return WorkoutViewModel(application, uid) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

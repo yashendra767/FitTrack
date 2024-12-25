@@ -7,17 +7,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp"
+    android:background="@color/materialGrey"
     tools:context=".HomeActivity">
-
-    <TextView
-        android:id="@+id/textWelcome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/adlam_display"
-        android:layout_margin="5dp"/>
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textSize="21sp"
+            android:textColor="#A8A9AB"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:fontFamily="@font/adlam_display"
+            android:layout_margin="5dp"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnLogout"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="30dp"
+            app:cardBackgroundColor="#fff59d"
+            app:cardElevation="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                app:drawableStartCompat="@drawable/baseline_logout_24">
+            </TextView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -30,5 +54,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/bottomNavView"
         app:menu="@menu/items"
+        android:theme="@style/BottomNavThem"
+        android:background="@color/materialGrey5"
         app:itemIconSize="30dp" />
 </LinearLayout>

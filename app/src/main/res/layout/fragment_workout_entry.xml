@@ -4,43 +4,56 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/materialGrey">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Your Workout"
-        android:textSize="40dp"
+        android:layout_gravity="center"
         android:layout_marginTop="35dp"
-        android:textStyle="bold"
-        android:textColor="@color/color1"
-        android:layout_gravity="center">
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Log Your Workout"
+        android:textColor="#cddc39"
+        android:textSize="40dp">
 
     </TextView>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        app:boxStrokeColor="@color/color1">
+        app:hintTextColor="#A8A9AB"
+        android:textColorHint="#A8A9AB"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@android:color/white"
+        app:hintEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextExerciseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
             android:drawableStart="@drawable/exercise_routine"
-            android:hint=" Exercise Name" />
+            android:hint=" Exercise Name"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        app:boxStrokeColor="@color/color1">
+        app:hintTextColor="#A8A9AB"
+        android:textColorHint="#A8A9AB"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@android:color/white"
+        app:hintEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextDuration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
             android:drawableStart="@drawable/time"
             android:hint=" Duration (minutes)"
             android:inputType="number" />
@@ -50,27 +63,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        app:boxStrokeColor="@color/color1">
+        app:boxStrokeColor="#A8A9AB"
+        android:textColorHint="#A8A9AB">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextCaloriesBurned"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
             android:hint=" Calories Burned"
             android:drawableStart="@drawable/calories"
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <TextView
         android:id="@+id/textViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date:"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_marginTop="8dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:paddingTop="16dp" />
 
     <androidx.cardview.widget.CardView
@@ -81,33 +96,40 @@
         app:cardElevation="5dp"
         app:cardCornerRadius="15dp"
         android:layout_marginTop="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Date"
+            android:background="#dce775"
+            android:fontFamily="@font/adlam_display"
             android:padding="7dp"
-            android:textColor="@color/white"
-            android:textSize="23dp"
-            android:background="#4491D3">
+            android:text="Select Date"
+            android:textColor="@color/materialGrey"
+            android:textSize="23sp">
+
         </TextView>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btnSave"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
-        app:cardCornerRadius="15dp"
-        android:layout_marginTop="58dp">
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        app:cardCornerRadius="30dp"
+        android:layout_marginTop="50dp"
+        app:cardBackgroundColor="#A5C10F">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:padding="7dp"
-            android:textColor="@color/white"
-            android:textSize="28dp"
-            android:background="@color/color1">
+            android:layout_gravity="center"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="Save Workout"
+            android:textColor="@color/materialGrey"
+            android:textSize="28sp">
         </TextView>
     </androidx.cardview.widget.CardView>
 

@@ -4,34 +4,46 @@ import androidx.lifecycle.LiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class WorkoutRepository(private val workoutDAO : WorkoutDAO) {
-    val readAllData: LiveData<List<DatabaseTable>> = workoutDAO.getAll()
+class WorkoutRepository(private val workoutDAO : WorkoutDAO, private var uid : String) {
+    var readAllData: LiveData<List<DatabaseTable>> = workoutDAO.getAll(uid)
     private val firestore = FirebaseFirestore.getInstance()
     private val workoutsCollection = firestore.collection("workouts")
 
     suspend fun addWorkout(databaseTable: DatabaseTable){
+        databaseTable.uid = uid
         workoutDAO.insertWorkout(databaseTable)
-
         saveWorkoutToFirebase(databaseTable)
     }
 
     suspend fun deleteWorkout(databaseTable: DatabaseTable){
         workoutDAO.deleteWorkout(databaseTable)
-
         deleteWorkoutFromFirebase(databaseTable)
     }
 
-    fun getTotalDurationForWeek(): LiveData<Int> {
-        return workoutDAO.getTotalDurationForWeek()
+    suspend fun updateWorkout(databaseTable: DatabaseTable) {
+        workoutDAO.updateWorkout(databaseTable)
+        saveWorkoutToFirebase(databaseTable)
     }
 
-    fun getTotalDurationForMonth(): LiveData<Int> {
-        return workoutDAO.getTotalDurationForMonth()
+    suspend fun getTotalDurationForWeekValue(): Int {
+        return workoutDAO.getTotalDurationForWeekValue(uid)
+    }
+
+    suspend fun getTotalDurationForMonthValue(): Int {
+        return workoutDAO.getTotalDurationForMonthValue(uid)
+    }
+
+    suspend fun getTotalCaloriesForWeekValue(): Int {
+        return workoutDAO.getTotalCaloriesForWeekValue(uid)
+    }
+
+    suspend fun getTotalCaloriesForMonthValue(): Int {
+        return workoutDAO.getTotalCaloriesForMonthValue(uid)
     }
 
     private suspend fun saveWorkoutToFirebase(databaseTable: DatabaseTable) {
         try {
-            val document = if (databaseTable.firebaseId.isNullOrEmpty()) {
+            var document = if (databaseTable.firebaseId.isNullOrEmpty()) {
                 workoutsCollection.add(databaseTable).await()
             } else {
                 workoutsCollection.document(databaseTable.firebaseId!!).set(databaseTable).await()
@@ -56,9 +68,9 @@ class WorkoutRepository(private val workoutDAO : WorkoutDAO) {
 
     suspend fun syncDataFromFirebase() {
         try {
-            val snapshot = workoutsCollection.get().await()
+            var snapshot = workoutsCollection.whereEqualTo("uid", uid).get().await()
             for (document in snapshot.documents) {
-                val workout = document.toObject(DatabaseTable::class.java)
+                var workout = document.toObject(DatabaseTable::class.java)
                 workout?.let {
                     it.firebaseId = document.id
                     workoutDAO.insertWorkout(it)
@@ -68,6 +80,4 @@ class WorkoutRepository(private val workoutDAO : WorkoutDAO) {
             e.printStackTrace()
         }
     }
-
-
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.Observer
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import com.example.fittrack.MyAdapter.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
@@ -23,6 +24,7 @@ class RecyclerWorkout : Fragment(), MyAdapter.OnItemClickListener {
     private lateinit var viewModel: WorkoutViewModel
     private lateinit var adapter: MyAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,6 +37,7 @@ class RecyclerWorkout : Fragment(), MyAdapter.OnItemClickListener {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         val view = inflater.inflate(R.layout.fragment_recycler_workout, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val searchView = view.findViewById<SearchView>(R.id.searchView)
         adapter = MyAdapter(emptyList(), this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -47,9 +50,32 @@ class RecyclerWorkout : Fragment(), MyAdapter.OnItemClickListener {
             adapter.setData(databaseTable)
         })
 
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    filter(newText)
+                }
+                return false
+            }
+        })
+
         return view
 
     }
+
+    private fun filter(text: String) {
+        val filteredList = viewModel.readAllData.value?.filter {
+            it.exName.contains(text, ignoreCase = true)
+        }
+        if (filteredList != null) {
+            adapter.setData(filteredList)
+        }
+    }
+
     override fun onDeleteButtonClick(position: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { dialog, _ ->

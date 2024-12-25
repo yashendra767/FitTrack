@@ -11,7 +11,7 @@ import kotlin.jvm.java
 
 @Database(
     entities = [DatabaseTable::class],
-    version = 3
+    version = 4
 )
 abstract class WorkoutDB : RoomDatabase() {
     abstract val workoutDAO: WorkoutDAO
@@ -29,6 +29,12 @@ abstract class WorkoutDB : RoomDatabase() {
             }
         }
 
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE DatabaseTable ADD COLUMN uid TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
         @Volatile
         private var INSTANCE: WorkoutDB? = null
 
@@ -43,7 +49,7 @@ abstract class WorkoutDB : RoomDatabase() {
                     WorkoutDB::class.java,
                     "workout_$uid"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .build()
                 INSTANCE = instance
                 return instance

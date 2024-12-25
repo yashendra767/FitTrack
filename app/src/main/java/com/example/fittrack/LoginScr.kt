@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase
 class LoginScr : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
-    lateinit var databaseReference: DatabaseReference
 
     companion object {
         const val KEY = "com.example.fittrack.LoginScr.KEY"
@@ -48,11 +48,18 @@ class LoginScr : AppCompatActivity() {
             insets
         }
 
-        val loginBtn = findViewById<Button>(R.id.btnSignIn)
+        val loginBtn = findViewById<CardView>(R.id.btnSignIn)
         val userEmail = findViewById<TextInputEditText>(R.id.userEmailEditText)
         val userPass = findViewById<TextInputEditText>(R.id.userPassEditText)
-        val sign_in_button = findViewById<ImageView>(R.id.img_sign_in)
+        val sign_in_button = findViewById<CardView>(R.id.img_sign_in)
         val tvSignUp = findViewById<TextView>(R.id.tVSignup)
+        val forgotPass = findViewById<TextView>(R.id.forgotPass)
+
+        forgotPass.setOnClickListener{
+            val intentPass = Intent(this, ForgotPass::class.java)
+            startActivity(intentPass)
+        }
+
         tvSignUp.setOnClickListener{
             val intentSignUp = Intent(this, SignUpScr::class.java)
             startActivity(intentSignUp)

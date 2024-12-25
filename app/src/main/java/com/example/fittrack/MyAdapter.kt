@@ -1,5 +1,6 @@
 package com.example.fittrack
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,16 @@ class MyAdapter(var workoutList : List<DatabaseTable>, private val listener: OnI
         holder.itemView.findViewById<TextView>(R.id.tVDuration).text= currentItem.duration.toString()
         holder.itemView.findViewById<TextView>(R.id.tVCalories).text = currentItem.calorie.toString()
         holder.itemView.findViewById<TextView>(R.id.tVDate).text = currentItem.date
+
+        holder.itemView.setOnLongClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, UpdateWorkout::class.java).apply {
+                putExtra("EXTRA_WORKOUT_ID", currentItem.id)
+                putExtra("EXTRA_DATE",currentItem.date)
+            }
+            context.startActivity(intent)
+            true
+        }
     }
 
     override fun getItemCount(): Int {

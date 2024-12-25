@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".UpdateWorkout"
+    android:background="@color/materialGrey">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Update Workout"
+        android:textColor="#cddc39"
+        android:textSize="40dp">
+
+    </TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:hintTextColor="#A8A9AB"
+        android:textColorHint="#A8A9AB"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@android:color/white"
+        app:hintEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/updateExerciseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
+            android:drawableStart="@drawable/exercise_routine"
+            android:hint=" Exercise Name"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:hintTextColor="#A8A9AB"
+        android:textColorHint="#A8A9AB"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@android:color/white"
+        app:hintEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/updateDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
+            android:drawableStart="@drawable/time"
+            android:hint=" Duration (minutes)"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:boxStrokeColor="#A8A9AB"
+        android:textColorHint="#A8A9AB">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/updateCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60dp"
+            android:textColor="#A8A9AB"
+            android:background="@drawable/inputbgrad"
+            android:hint=" Calories Burned"
+            android:drawableStart="@drawable/calories"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnUpdate"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        app:cardCornerRadius="30dp"
+        android:layout_marginTop="70dp"
+        app:cardBackgroundColor="#A5C10F">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="Save Workout"
+            android:textColor="@color/materialGrey"
+            android:textSize="28sp">
+        </TextView>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

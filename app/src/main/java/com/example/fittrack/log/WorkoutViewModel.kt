@@ -15,8 +15,8 @@ class WorkoutViewModel(application: Application, uid: String) : AndroidViewModel
 
 
     init{
-        val workoutDAO = WorkoutDB.getDB(application, uid).workoutDAO
-        repository = WorkoutRepository(workoutDAO)
+        var workoutDAO = WorkoutDB.getDB(application, uid).workoutDAO
+        repository = WorkoutRepository(workoutDAO, uid)
         readAllData = repository.readAllData
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -37,13 +37,41 @@ class WorkoutViewModel(application: Application, uid: String) : AndroidViewModel
         }
     }
 
-    fun getTotalDurationForWeek(): LiveData<Int> {
-        return repository.getTotalDurationForWeek()
+    fun updateWorkout(databaseTable: DatabaseTable) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateWorkout(databaseTable)
+        }
     }
 
-    fun getTotalDurationForMonth(): LiveData<Int> {
-        return repository.getTotalDurationForMonth()
+
+    fun getWeeklyProgress(goal: Int, goalType: String): LiveData<Int> {
+        val progress = MutableLiveData<Int>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val totalValue = if (goalType == "Duration") {
+                repository.getTotalDurationForWeekValue()
+            } else {
+                repository.getTotalCaloriesForWeekValue()
+            }
+            val progressValue = if (goal > 0) (totalValue * 100) / goal else 0
+            progress.postValue(progressValue)
+        }
+        return progress
     }
+
+    fun getMonthlyProgress(goal: Int, goalType: String): LiveData<Int> {
+        val progress = MutableLiveData<Int>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val totalValue = if (goalType == "Duration") {
+                repository.getTotalDurationForMonthValue()
+            } else {
+                repository.getTotalCaloriesForMonthValue()
+            }
+            val progressValue = if (goal > 0) (totalValue * 100) / goal else 0
+            progress.postValue(progressValue)
+        }
+        return progress
+    }
+
 
 
 }

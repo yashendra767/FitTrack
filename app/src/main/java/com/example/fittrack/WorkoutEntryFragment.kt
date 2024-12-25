@@ -24,7 +24,8 @@ class WorkoutEntryFragment : Fragment() {
     private lateinit var buttonSelectDate: CardView
     private lateinit var buttonSave: CardView
     private lateinit var viewModel: WorkoutViewModel
-    private var selectedDate: String = ""
+    private var selectedDate: Calendar? = null
+    private var uid: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +36,7 @@ class WorkoutEntryFragment : Fragment() {
 
 
         //viewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        uid = FirebaseAuth.getInstance().currentUser?.uid
 
         if (uid != null) {
 
@@ -43,7 +44,7 @@ class WorkoutEntryFragment : Fragment() {
                 this,
                 WorkoutViewModelFactory(
                     requireActivity().application,
-                    uid
+                    uid!!
                 )
             ).get(WorkoutViewModel::class.java)
         } else {
@@ -77,8 +78,10 @@ class WorkoutEntryFragment : Fragment() {
 
         val datePickerDialog =
             DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-                selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                textViewDate.text = selectedDate
+                selectedDate = Calendar.getInstance().apply {
+                    set(selectedYear, selectedMonth, selectedDay)
+                }
+                textViewDate.text = "${selectedDay}/${selectedMonth + 1}/${selectedYear}"
             }, year, month, day)
 
         datePickerDialog.show()
@@ -89,18 +92,23 @@ class WorkoutEntryFragment : Fragment() {
         val duration = editTextDuration.text.toString()
         val caloriesBurned = editTextCaloriesBurned.text.toString()
 
-        if (exerciseName.isNotEmpty() && duration.isNotEmpty() && caloriesBurned.isNotEmpty() && selectedDate.isNotEmpty()) {
+        if (exerciseName.isNotEmpty() && duration.isNotEmpty() && caloriesBurned.isNotEmpty() && selectedDate != null) {
             val exDuration = duration.toIntOrNull()
             val exCaloriesBurned = caloriesBurned.toIntOrNull()
+            val currentDate = Calendar.getInstance()
+
+            if (selectedDate!!.after(currentDate)) {
+                Toast.makeText(requireContext(), "Cannot add future workouts", Toast.LENGTH_SHORT).show()
+                return
+            }
 
             if (exDuration != null && exCaloriesBurned != null) {
-                val entry = DatabaseTable(exerciseName, exDuration, exCaloriesBurned, selectedDate)
+                val dateFormatted = "${selectedDate!!.get(Calendar.DAY_OF_MONTH)}/${selectedDate!!.get(Calendar.MONTH) + 1}/${selectedDate!!.get(Calendar.YEAR)}"
+                val entry = DatabaseTable(exerciseName, exDuration, exCaloriesBurned, dateFormatted, uid = uid!!)
                 viewModel.insertWorkout(entry)
-                Toast.makeText(requireContext(), "Workout saved successfully!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Workout saved successfully!", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Invalid duration or calories", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Invalid duration or calories", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()

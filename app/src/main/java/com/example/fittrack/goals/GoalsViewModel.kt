@@ -11,16 +11,25 @@ import androidx.lifecycle.AndroidViewModel
 class GoalsViewModel(application: Application) : AndroidViewModel(application) {
     private val goalDao = GoalsDB.getDB(application).goalsDAO()
 
-    fun saveGoals(weeklyGoal: Int, monthlyGoal: Int) {
+    fun saveGoals(weeklyGoal: Int, monthlyGoal: Int, goalType: String) {
         viewModelScope.launch {
-            val goal = GoalsTable(weeklyGoal, monthlyGoal)
-            goalDao.insertGoal(goal)
+            if (goalType == "Duration") {
+                val goal = DurationGoalsTable(weeklyGoal, monthlyGoal)
+                goalDao.insertDurationGoal(goal)
+            } else {
+                val goal = CalorieGoalsTable(weeklyGoal, monthlyGoal)
+                goalDao.insertCalorieGoal(goal)
+            }
         }
     }
 
-    fun getLastGoal(callback: (GoalsTable?) -> Unit) {
+    fun getLastGoal(goalType: String, callback: (Any?) -> Unit) {
         viewModelScope.launch {
-            val goal = goalDao.getLastGoal()
+            val goal = if (goalType == "Duration") {
+                goalDao.getLastDurationGoal()
+            } else {
+                goalDao.getLastCalorieGoal()
+            }
             callback(goal)
         }
     }

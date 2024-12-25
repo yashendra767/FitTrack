@@ -11,8 +11,20 @@ import androidx.room.Query
 interface GoalsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertGoal(goalsTable: GoalsTable)
+    suspend fun insertDurationGoal(goal: DurationGoalsTable)
 
-    @Query("SELECT * FROM goalstable ORDER BY id DESC LIMIT 1")
-    suspend fun getLastGoal(): GoalsTable?
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCalorieGoal(goal: CalorieGoalsTable)
+
+    @Query("SELECT * FROM duration_goals ORDER BY id DESC LIMIT 1")
+    suspend fun getLastDurationGoal(): DurationGoalsTable?
+
+    @Query("SELECT * FROM calorie_goals ORDER BY id DESC LIMIT 1")
+    suspend fun getLastCalorieGoal(): CalorieGoalsTable?
+
+    @Query("SELECT * FROM duration_goals ORDER BY id DESC")
+    fun getAllDurationGoals(): LiveData<List<DurationGoalsTable>>
+
+    @Query("SELECT * FROM calorie_goals ORDER BY id DESC")
+    fun getAllCalorieGoals(): LiveData<List<CalorieGoalsTable>>
 }

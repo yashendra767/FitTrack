@@ -4,6 +4,20 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="BottomNavThem" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="colorPrimary">@color/selectedItem</item>
+    </style>
+    
+    <style name="SpinnerItemStyle">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 
     <style name="Theme.FitTrack" parent="Base.Theme.FitTrack" />
+    
+    <style name="SearchViewTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="editTextColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:searchIcon">@color/white</item>
+    </style>
 </resources>
