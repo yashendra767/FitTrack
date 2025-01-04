@@ -32,7 +32,8 @@ class LoginScr : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
 
     companion object {
-        const val KEY = "com.example.fittrack.LoginScr.KEY"
+        const val KEY_NAME = "com.example.fittrack.LoginScr.KEY_NAME"
+        const val KEY_EMAIL = "com.example.fittrack.LoginScr.KEY_EMAIL"
         private const val RC_SIGN_IN = 9001
         private const val TAG = "GoogleActivity"
     }
@@ -137,13 +138,23 @@ class LoginScr : AppCompatActivity() {
             }
     }
 
+    private fun saveUserDataToPreferences(name: String, email: String) {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("userName", name)
+        editor.putString("userEmail", email)
+        editor.apply()
+    }
+
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-            val nameId = user.displayName ?: "User"
+            val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            val name = user.displayName ?: sharedPreferences.getString("userName", "User") ?: "User"
+            val email = user.email ?: "user@example.com"
+            saveUserDataToPreferences(name, email)
             val intentHome = Intent(this, HomeActivity::class.java)
-            intentHome.putExtra(KEY, nameId)
             startActivity(intentHome)
+            finish()
         } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
         }

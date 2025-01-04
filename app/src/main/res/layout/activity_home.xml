@@ -38,7 +38,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/baseline_logout_24">
+                app:drawableStartCompat="@drawable/baseline_person_24">
             </TextView>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

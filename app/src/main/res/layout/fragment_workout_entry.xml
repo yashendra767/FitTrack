@@ -27,7 +27,7 @@
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="@android:color/white"
         app:hintEnabled="true">
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/editTextExerciseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:textColor="#A8A9AB"
             android:background="@drawable/inputbgrad"
             android:drawableStart="@drawable/exercise_routine"
-            android:hint=" Exercise Name"/>
+            android:hint=" Exercise Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

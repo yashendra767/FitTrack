@@ -24,22 +24,18 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val name = intent.getStringExtra(LoginScr.KEY)
-        val welcomeTxt = findViewById<TextView>(R.id.textWelcome)
-        val logout = findViewById<CardView>(R.id.btnLogout)
-        if(name != null){
-            welcomeTxt.text = "Welcome $name"
-        }
-        else {
-            welcomeTxt.text = "Welcome"
-        }
+        val (name, email) = getUserDataFromPreferences()
 
-        logout.setOnClickListener{
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, LoginScr::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        val welcomeTxt = findViewById<TextView>(R.id.textWelcome)
+        welcomeTxt.text = "Welcome $name"
+
+        val profile = findViewById<CardView>(R.id.btnLogout)
+        profile.setOnClickListener {
+            val intent = Intent(this, Profile::class.java)
             startActivity(intent)
         }
+
         val bottomView = findViewById<BottomNavigationView>(R.id.bottomNavView)
         replaceTheFragment(WorkoutEntryFragment())
         bottomView.setOnItemSelectedListener{
@@ -59,6 +55,14 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
+
+    private fun getUserDataFromPreferences(): Pair<String, String> {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val name = sharedPreferences.getString("userName", "Name not available") ?: "Name not available"
+        val email = sharedPreferences.getString("userEmail", "Email not available") ?: "Email not available"
+        return Pair(name, email)
+    }
+
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
        finishAffinity()

@@ -47,13 +47,19 @@ class GoalsFragment : Fragment() {
     private lateinit var progressBarCalorieMonthly: ProgressBar
     private lateinit var progressTextCalorieMonthly: TextView
 
+    private lateinit var cardViewDurationWeekly: CardView
+    private lateinit var cardViewDurationMonthly: CardView
+    private lateinit var cardViewCalorieMonthly: CardView
+    private lateinit var cardViewCalorieWeekly: CardView
+
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment 
         val view = inflater.inflate(R.layout.fragment_goals, container, false)
         viewModel = ViewModelProvider(this).get(GoalsViewModel::class.java)
         val factory = WorkoutViewModelFactory(requireActivity().application, uid.toString())
@@ -76,6 +82,12 @@ class GoalsFragment : Fragment() {
         progressTextCalorieWeekly = view.findViewById<TextView>(R.id.progressTextCalorieWeekly)
         progressBarCalorieMonthly = view.findViewById<ProgressBar>(R.id.progressBarCalorieMonthly)
         progressTextCalorieMonthly = view.findViewById<TextView>(R.id.progressTextCalorieMonthly)
+
+
+        cardViewDurationMonthly=view.findViewById<CardView>(R.id.cardViewDurationMonth)
+        cardViewDurationWeekly=view.findViewById<CardView>(R.id.cardViewDurationWeek)
+        cardViewCalorieWeekly=view.findViewById<CardView>(R.id.calorieCardViewWeek)
+        cardViewCalorieMonthly=view.findViewById<CardView>(R.id.calorieCardViewMonth)
 
         val goalTypeSpinner = view.findViewById<Spinner>(R.id.goalTypeSpinner)
         ArrayAdapter.createFromResource(
@@ -130,25 +142,49 @@ class GoalsFragment : Fragment() {
     }
     fun updateProgressBars() {
         if (goalType == "Duration") {
+            progressBarWeekly.visibility = View.VISIBLE
+            progressTextWeekly.visibility = View.VISIBLE
+            progressBarMonthly.visibility = View.VISIBLE
+            progressTextMonthly.visibility = View.VISIBLE
+
+            progressBarCalorieWeekly.visibility = View.GONE
+            progressTextCalorieWeekly.visibility = View.GONE
+            progressBarCalorieMonthly.visibility = View.GONE
+            progressTextCalorieMonthly.visibility = View.GONE
+
+            cardViewCalorieWeekly.visibility = View.GONE
+            cardViewCalorieMonthly.visibility = View.GONE
+            cardViewDurationWeekly.visibility = View.VISIBLE
+            cardViewDurationMonthly.visibility = View.VISIBLE
+
+
+
             progressBarWeekly.progress = currentWeeklyProgress
             progressTextWeekly.text = "$currentWeeklyProgress%"
             progressBarMonthly.progress = currentMonthlyProgress
             progressTextMonthly.text = "$currentMonthlyProgress%"
+        }else if (goalType == "Calories") {
+            progressBarCalorieWeekly.visibility = View.VISIBLE
+            progressTextCalorieWeekly.visibility = View.VISIBLE
+            progressBarCalorieMonthly.visibility = View.VISIBLE
+            progressTextCalorieMonthly.visibility = View.VISIBLE
+            
+            progressBarWeekly.visibility = View.GONE
+            progressTextWeekly.visibility = View.GONE
+            progressBarMonthly.visibility = View.GONE
+            progressTextMonthly.visibility = View.GONE
 
-            progressBarCalorieWeekly.progress = 0
-            progressTextCalorieWeekly.text = "0%"
-            progressBarCalorieMonthly.progress = 0
-            progressTextCalorieMonthly.text = "0%"
-        } else {
+
+            cardViewCalorieWeekly.visibility = View.VISIBLE
+            cardViewCalorieMonthly.visibility = View.VISIBLE
+            cardViewDurationWeekly.visibility = View.GONE
+            cardViewDurationMonthly.visibility = View.GONE
+
             progressBarCalorieWeekly.progress = currentWeeklyProgress
             progressTextCalorieWeekly.text = "$currentWeeklyProgress%"
             progressBarCalorieMonthly.progress = currentMonthlyProgress
             progressTextCalorieMonthly.text = "$currentMonthlyProgress%"
 
-            progressBarWeekly.progress = 0
-            progressTextWeekly.text = "0%"
-            progressBarMonthly.progress = 0
-            progressTextMonthly.text = "0%"
         }
     }
 

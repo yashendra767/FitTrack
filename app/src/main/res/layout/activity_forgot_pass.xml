@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="120dp"
-                app:hintTextColor="@drawable/hint_color"
+                app:hintTextColor="#A8A9AB"
+                android:textColorHint="#A8A9AB"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@android:color/white"
                 app:hintEnabled="true">
@@ -46,9 +47,10 @@
                     android:layout_height="wrap_content"
                     android:hint=" Email"
                     android:height="60dp"
+                    android:textColor="#A8A9AB"
                     android:background="@drawable/inputbgrad"
                     android:drawableStart="@drawable/baseline_email_24"
-                    android:textColorHint="@color/grey"/>
+                    android:textColorHint="#A8A9AB"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.cardview.widget.CardView
