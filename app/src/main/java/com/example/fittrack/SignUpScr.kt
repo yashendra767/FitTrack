@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.userProfileChangeRequest
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -44,17 +45,31 @@ class SignUpScr : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         val userId = user?.uid ?: ""
-                        val userObject = User(name, email, pass)
-                        database = FirebaseDatabase.getInstance().getReference("Users")
-                        database.child(userId).setValue(userObject).addOnSuccessListener {
-                            Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
-                        }.addOnFailureListener {
-                            Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_SHORT).show()
+
+                        val profileUpdates = userProfileChangeRequest {
+                            displayName = name
+                        }
+                        user?.updateProfile(profileUpdates)?.addOnCompleteListener { updateTask ->
+                            if (updateTask.isSuccessful) {
+                                val userObject = User(name, email, pass)
+                                database = FirebaseDatabase.getInstance().getReference("Users")
+                                database.child(userId).setValue(userObject).addOnSuccessListener {
+                                    Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this, LoginScr::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }.addOnFailureListener {
+                                    Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(this, "Failed to update profile: ${updateTask.exception?.message}", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     } else {
                         Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
+
         }
 
         val existingUser = findViewById<TextView>(R.id.textView3)

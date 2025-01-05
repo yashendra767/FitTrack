@@ -148,9 +148,9 @@ class LoginScr : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-            val name = user.displayName ?: sharedPreferences.getString("userName", "User") ?: "User"
+            val name = user.displayName ?: "User"
             val email = user.email ?: "user@example.com"
+
             saveUserDataToPreferences(name, email)
             val intentHome = Intent(this, HomeActivity::class.java)
             startActivity(intentHome)

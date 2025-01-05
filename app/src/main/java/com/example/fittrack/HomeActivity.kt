@@ -24,8 +24,12 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val (name, email) = getUserDataFromPreferences()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
 
+        val name = currentUser?.displayName
+            ?: sharedPreferences.getString("userName", "User")
+            ?: "User"
 
         val welcomeTxt = findViewById<TextView>(R.id.textWelcome)
         welcomeTxt.text = "Welcome $name"
