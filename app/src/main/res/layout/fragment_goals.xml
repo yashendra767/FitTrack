@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#A8A9AB"
+            android:inputType="number"
             android:background="@drawable/inputbgrad"
             android:hint=" Weekly Goal"
             android:height="60dp"
@@ -70,6 +71,7 @@
             android:background="@drawable/inputbgrad"
             android:layout_height="wrap_content"
             android:hint=" Monthly Goal"
+            android:inputType="number"
             android:height="60dp"
             android:drawableStart="@drawable/baseline_calendar_month_24"/>
     </com.google.android.material.textfield.TextInputLayout>

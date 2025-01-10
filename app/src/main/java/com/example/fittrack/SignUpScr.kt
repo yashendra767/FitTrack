@@ -39,7 +39,19 @@ class SignUpScr : AppCompatActivity() {
             val name = nameUser.text.toString()
             val email = emailUser.text.toString()
             val pass = passUser.text.toString()
-
+            if (!email.contains("@gmail.com")) {
+                Toast.makeText(this, "Enter email in the correct format (e.g., example@gmail.com)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (pass.length < 6) {
+                Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val specialCharacterPattern = "[!@#\$%^&*(),.?\":{}|<>]"
+            if (!pass.matches(Regex(".*$specialCharacterPattern.*"))) {
+                Toast.makeText(this, "Password must contain at least one special character", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             auth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {

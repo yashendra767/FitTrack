@@ -38,7 +38,6 @@ class LoginScr : AppCompatActivity() {
         private const val TAG = "GoogleActivity"
     }
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -71,6 +70,15 @@ class LoginScr : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val email = userEmail.text.toString()
             val password = userPass.text.toString()
+            if (password.length < 6) {
+                Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val specialCharacterPattern = "[!@#\$%^&*(),.?\":{}|<>]"
+            if (!password.matches(Regex(".*$specialCharacterPattern.*"))) {
+                Toast.makeText(this, "Password must contain at least one special character", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->

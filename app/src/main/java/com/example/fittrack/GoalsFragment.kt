@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -130,9 +131,15 @@ class GoalsFragment : Fragment() {
         }
 
         setGoalsButton.setOnClickListener {
-            weeklyGoal = weeklyGoalEditText.text.toString().toInt()
-            monthlyGoal = monthlyGoalEditText.text.toString().toInt()
+            val weeklyGoalInput = weeklyGoalEditText.text.toString()
+            val monthlyGoalInput = monthlyGoalEditText.text.toString()
 
+            if (weeklyGoalInput.isEmpty() || monthlyGoalInput.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter all the goals", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            weeklyGoal = weeklyGoalInput.toInt()
+            monthlyGoal = monthlyGoalInput.toInt()
             viewModel.saveGoals(weeklyGoal, monthlyGoal, goalType)
             fetchAndUpdateProgress(weeklyGoal, monthlyGoal, goalType)
         }
