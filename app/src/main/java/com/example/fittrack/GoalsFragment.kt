@@ -167,9 +167,22 @@ class GoalsFragment : Fragment() {
 
 
             progressBarWeekly.progress = currentWeeklyProgress
-            progressTextWeekly.text = "$currentWeeklyProgress%"
+            if(currentWeeklyProgress<100){
+                progressTextWeekly.text = "$currentWeeklyProgress%"
+            }
+            else{
+                progressTextWeekly.text="100%"
+            }
+
             progressBarMonthly.progress = currentMonthlyProgress
-            progressTextMonthly.text = "$currentMonthlyProgress%"
+
+            if(currentMonthlyProgress<100){
+                progressTextMonthly.text = "$currentMonthlyProgress%"
+            }
+            else{
+                progressTextMonthly.text="100%"
+            }
+
         }else if (goalType == "Calories") {
             progressBarCalorieWeekly.visibility = View.VISIBLE
             progressTextCalorieWeekly.visibility = View.VISIBLE
@@ -188,10 +201,21 @@ class GoalsFragment : Fragment() {
             cardViewDurationMonthly.visibility = View.GONE
 
             progressBarCalorieWeekly.progress = currentWeeklyProgress
-            progressTextCalorieWeekly.text = "$currentWeeklyProgress%"
-            progressBarCalorieMonthly.progress = currentMonthlyProgress
-            progressTextCalorieMonthly.text = "$currentMonthlyProgress%"
+            if (currentWeeklyProgress<100){
+                progressTextCalorieWeekly.text = "$currentWeeklyProgress%"
+            }
+            else{
+                progressTextCalorieWeekly.text="100%"
+            }
 
+            progressBarCalorieMonthly.progress = currentMonthlyProgress
+
+            if(currentMonthlyProgress<100){
+                progressTextCalorieMonthly.text = "$currentMonthlyProgress%"
+            }
+            else{
+                progressTextCalorieMonthly.text="100%"
+            }
         }
     }
 
